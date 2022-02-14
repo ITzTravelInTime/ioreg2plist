@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftLoggedPrint",
+        "repositoryURL": "https://github.com/ITzTravelInTime/SwiftLoggedPrint",
+        "state": {
+          "branch": null,
+          "revision": "5236d5d1bcf0306d316bb6ac0af9ee6f07894f2f",
+          "version": "3.2.0"
+        }
+      },
+      {
+        "package": "TINUIOKit",
+        "repositoryURL": "https://github.com/ITzTravelInTime/TINUIORegistry",
+        "state": {
+          "branch": "main",
+          "revision": "a6e39f679153463cd970d3deaf31ea728ba38be8",
+          "version": null
+        }
+      },
+      {
+        "package": "TINURecovery",
+        "repositoryURL": "https://github.com/ITzTravelInTime/TINURecovery",
+        "state": {
+          "branch": null,
+          "revision": "174fd77843d7158ca8e8e4b4835b7552df0170db",
+          "version": "4.0.1"
+        }
+      },
+      {
+        "package": "TINUSerialization",
+        "repositoryURL": "https://github.com/ITzTravelInTime/TINUSerialization",
+        "state": {
+          "branch": "main",
+          "revision": "51c014cef76abb3439480d65fcb8f9a8b05044e9",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

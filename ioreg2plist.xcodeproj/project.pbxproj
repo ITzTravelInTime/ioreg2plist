@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		DD835B2E27BA77B5005D8098 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD835B2D27BA77B5005D8098 /* main.swift */; };
+		DD835B3627BA7820005D8098 /* TINUIORegistry in Frameworks */ = {isa = PBXBuildFile; productRef = DD835B3527BA7820005D8098 /* TINUIORegistry */; };
+		DD835B3927BA789F005D8098 /* TINUSerialization in Frameworks */ = {isa = PBXBuildFile; productRef = DD835B3827BA789F005D8098 /* TINUSerialization */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,7 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DD835B2A27BA77B5005D8098 /* ioreg2json */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ioreg2json; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD835B2A27BA77B5005D8098 /* ioreg2plist */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ioreg2plist; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD835B2D27BA77B5005D8098 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -32,6 +34,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD835B3627BA7820005D8098 /* TINUIORegistry in Frameworks */,
+				DD835B3927BA789F005D8098 /* TINUSerialization in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,7 +53,7 @@
 		DD835B2B27BA77B5005D8098 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DD835B2A27BA77B5005D8098 /* ioreg2json */,
+				DD835B2A27BA77B5005D8098 /* ioreg2plist */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,9 +69,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DD835B2927BA77B5005D8098 /* ioreg2json */ = {
+		DD835B2927BA77B5005D8098 /* ioreg2plist */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DD835B3127BA77B5005D8098 /* Build configuration list for PBXNativeTarget "ioreg2json" */;
+			buildConfigurationList = DD835B3127BA77B5005D8098 /* Build configuration list for PBXNativeTarget "ioreg2plist" */;
 			buildPhases = (
 				DD835B2627BA77B5005D8098 /* Sources */,
 				DD835B2727BA77B5005D8098 /* Frameworks */,
@@ -77,9 +81,13 @@
 			);
 			dependencies = (
 			);
-			name = ioreg2json;
+			name = ioreg2plist;
+			packageProductDependencies = (
+				DD835B3527BA7820005D8098 /* TINUIORegistry */,
+				DD835B3827BA789F005D8098 /* TINUSerialization */,
+			);
 			productName = ioreg2json;
-			productReference = DD835B2A27BA77B5005D8098 /* ioreg2json */;
+			productReference = DD835B2A27BA77B5005D8098 /* ioreg2plist */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -97,8 +105,8 @@
 					};
 				};
 			};
-			buildConfigurationList = DD835B2527BA77B5005D8098 /* Build configuration list for PBXProject "ioreg2json" */;
-			compatibilityVersion = "Xcode 13.0";
+			buildConfigurationList = DD835B2527BA77B5005D8098 /* Build configuration list for PBXProject "ioreg2plist" */;
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -106,11 +114,15 @@
 				Base,
 			);
 			mainGroup = DD835B2127BA77B5005D8098;
+			packageReferences = (
+				DD835B3427BA7820005D8098 /* XCRemoteSwiftPackageReference "TINUIORegistry" */,
+				DD835B3727BA789F005D8098 /* XCRemoteSwiftPackageReference "TINUSerialization" */,
+			);
 			productRefGroup = DD835B2B27BA77B5005D8098 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DD835B2927BA77B5005D8098 /* ioreg2json */,
+				DD835B2927BA77B5005D8098 /* ioreg2plist */,
 			);
 		};
 /* End PBXProject section */
@@ -246,6 +258,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -255,6 +268,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -263,7 +277,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DD835B2527BA77B5005D8098 /* Build configuration list for PBXProject "ioreg2json" */ = {
+		DD835B2527BA77B5005D8098 /* Build configuration list for PBXProject "ioreg2plist" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DD835B2F27BA77B5005D8098 /* Debug */,
@@ -272,7 +286,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DD835B3127BA77B5005D8098 /* Build configuration list for PBXNativeTarget "ioreg2json" */ = {
+		DD835B3127BA77B5005D8098 /* Build configuration list for PBXNativeTarget "ioreg2plist" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DD835B3227BA77B5005D8098 /* Debug */,
@@ -282,6 +296,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DD835B3427BA7820005D8098 /* XCRemoteSwiftPackageReference "TINUIORegistry" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ITzTravelInTime/TINUIORegistry";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		DD835B3727BA789F005D8098 /* XCRemoteSwiftPackageReference "TINUSerialization" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ITzTravelInTime/TINUSerialization";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DD835B3527BA7820005D8098 /* TINUIORegistry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD835B3427BA7820005D8098 /* XCRemoteSwiftPackageReference "TINUIORegistry" */;
+			productName = TINUIORegistry;
+		};
+		DD835B3827BA789F005D8098 /* TINUSerialization */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD835B3727BA789F005D8098 /* XCRemoteSwiftPackageReference "TINUSerialization" */;
+			productName = TINUSerialization;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DD835B2227BA77B5005D8098 /* Project object */;
 }

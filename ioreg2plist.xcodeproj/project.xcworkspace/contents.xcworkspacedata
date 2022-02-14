@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:">
+      location = "self:/Users/itztravelintime/Desktop/ioreg2json/ioreg2plist.xcodeproj">
    </FileRef>
 </Workspace>
