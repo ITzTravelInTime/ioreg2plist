@@ -27,6 +27,8 @@
 /* Begin PBXFileReference section */
 		DD835B2A27BA77B5005D8098 /* ioreg2plist */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ioreg2plist; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD835B2D27BA77B5005D8098 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		DD835B3A27BB097D005D8098 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		DD835B3B27BB097D005D8098 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,8 @@
 		DD835B2127BA77B5005D8098 = {
 			isa = PBXGroup;
 			children = (
+				DD835B3A27BB097D005D8098 /* LICENSE */,
+				DD835B3B27BB097D005D8098 /* README.md */,
 				DD835B2C27BA77B5005D8098 /* ioreg2plist */,
 				DD835B2B27BA77B5005D8098 /* Products */,
 			);
