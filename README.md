@@ -4,8 +4,9 @@ A command line tool to dump the macOS IORegistry entries in plist format.
 This app has been mostly made for Developers and people who need to quickly get info about IORegistry entries, either for scripts or just getting info.
 
 # Libraries used
- [TINUSerialization]("https://github.com/ITzTravelInTime/TINUSerialization")
- [TINUIORegistry]("https://github.com/ITzTravelInTime/TINUIORegistry")
+  - [TINUSerialization](https://github.com/ITzTravelInTime/TINUSerialization)
+ 
+  - [TINUIORegistry](https://github.com/ITzTravelInTime/TINUIORegistry)
 
 # Credits
 
