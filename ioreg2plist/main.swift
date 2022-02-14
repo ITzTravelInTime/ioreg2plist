@@ -9,11 +9,21 @@ import Foundation
 import TINUIORegistry
 import TINUSerialization
 
-extension Dictionary: FastEncodable where Key == String, Value == Any {
+typealias ReturnType = [String: Any]
+
+extension Dictionary: FastEncodable where Key == String, Value == ReturnType {
     
 }
 
-extension Dictionary: GenericEncodable where Key == String, Value == Any{
+extension Dictionary: GenericEncodable where Key == String, Value == ReturnType{
+    
+}
+
+extension Array: FastEncodable where Element == ReturnType {
+    
+}
+
+extension Array: GenericEncodable where Element == ReturnType{
     
 }
 
@@ -27,14 +37,7 @@ let acount = CommandLine.arguments.count
 let path = FileManager.default.currentDirectoryPath
 
 func main() -> Int32{
-    
-    enum OutputFormat{
-        case json
-        case plist
-    }
-    
-    var format: OutputFormat = .json
-    var endlessArgs: [String]? = nil
+    var endlessArgs: [String: Bool]? = nil
     var jumpArg: Bool = false
     var file: URL? = nil
     
@@ -49,7 +52,7 @@ func main() -> Int32{
         let narg: String? = (i < acount - 1) ? args[i + 1] : nil
         
         if endlessArgs != nil{
-            endlessArgs?.append(arg)
+            endlessArgs![arg] = false
             continue
         }
         
@@ -79,11 +82,8 @@ func main() -> Int32{
         }
         
         switch arg{
-        case "-plist", "-p":
-            format = .plist
-            continue
         case "-d", "-device":
-            endlessArgs = []
+            endlessArgs = [:]
             continue
         case "-f":
             jumpArg.toggle()
@@ -103,7 +103,10 @@ func main() -> Int32{
                 farg = String(farg.dropLast())
             }
             
-            if !(farg.starts(with: "~") || farg.starts(with: ".")) && !farg.contains("/"){
+            if farg.starts(with: "./"){
+                farg.removeFirst(2)
+                farg = path + "/" + farg
+            }else if !(farg.starts(with: "~") || farg.starts(with: ".")) && !farg.contains("/"){
                 farg = path + "/" + farg
             }
             
@@ -122,12 +125,12 @@ func main() -> Int32{
         
     }
     
-    if endlessArgs == nil || endlessArgs == []{
+    if endlessArgs == nil || endlessArgs?.isEmpty ?? true{
         print("No ioregistry objects specified")
     }
     
     let iterator = IORecursiveIterator()
-    var res = [String: Any]()
+    var res = [ReturnType]()
     
     while iterator.next(){
         guard let entry = iterator.entry else{
@@ -138,11 +141,13 @@ func main() -> Int32{
             continue
         }
         
-        if !endlessArgs!.contains(name) {
+        if endlessArgs![name] != nil{
+            endlessArgs![name] = true
+        }else{
             continue
         }
         
-        guard var val = entry.getPropertyTable() else{
+        guard let val = entry.getPropertyTable() else{
             continue
         }
         
@@ -155,19 +160,51 @@ func main() -> Int32{
             val[i.key] = Data(dat).base64EncodedString(options: .init())
         }
         */
+        
+        let ret: [String: Any] = [name: val]
          
-        res[name] = val
+        res.append(ret)
     }
     
-    print(res.plist())
+    var notFound: [String] = []
+    
+    for i in endlessArgs ?? [:]{
+        if !i.value{
+            notFound.append(i.key)
+        }
+    }
+    
+    if !notFound.isEmpty && notFound.count != (endlessArgs ?? [:]).count{
+        print("No matches found for the following entries: \(notFound)")
+        return 1
+    }else if res.isEmpty{
+        print("No matches found for all the specified entries")
+        return 1
+    }
+    
+    guard let plist = res.plist() else{
+        print("Impossible to get a plist conversion of the obtained data")
+        return 1
+    }
+    
+    print(plist)
+    
+    if let f = file{
+        do{
+            try plist.write(toFile: f.path, atomically: true, encoding: .utf8)
+        }catch let err{
+            print("Error writing data to file: \(err.localizedDescription)")
+            return 1
+        }
+    }
     
     return 0
 }
 
 func printHelp(){
-    print("Usage: ioreg2json [-plist] [-f [file name]] [-d [device names]]")
-    print("Example usage: ioreg2json -d RTC TMR PNP0B00")
-    print("Do ioreg2json -h to print this messange")
+    print("Usage: ioreg2plist [-f [file name]] [-d [device names]]")
+    print("Example usage: ioreg2plist -d RTC TMR PNP0B00")
+    print("Do ioreg2plist -h to print this messange")
 }
 
 exit(main())

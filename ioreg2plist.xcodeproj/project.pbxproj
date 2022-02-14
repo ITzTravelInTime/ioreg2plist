@@ -45,7 +45,7 @@
 		DD835B2127BA77B5005D8098 = {
 			isa = PBXGroup;
 			children = (
-				DD835B2C27BA77B5005D8098 /* ioreg2json */,
+				DD835B2C27BA77B5005D8098 /* ioreg2plist */,
 				DD835B2B27BA77B5005D8098 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,12 +58,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DD835B2C27BA77B5005D8098 /* ioreg2json */ = {
+		DD835B2C27BA77B5005D8098 /* ioreg2plist */ = {
 			isa = PBXGroup;
 			children = (
 				DD835B2D27BA77B5005D8098 /* main.swift */,
 			);
-			path = ioreg2json;
+			path = ioreg2plist;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
