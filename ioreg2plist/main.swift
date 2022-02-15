@@ -137,12 +137,18 @@ func main() -> Int32{
             continue
         }
         
-        guard let name = entry.getName() else{
+        guard let name = entry.getEntryName() else{
             continue
         }
         
         if endlessArgs![name] != nil{
             endlessArgs![name] = true
+        }else if let dname = entry.getNameProperty(){
+            if endlessArgs![dname] == nil{
+                continue
+            }
+            
+            endlessArgs![dname] = true
         }else{
             continue
         }

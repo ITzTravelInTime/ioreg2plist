@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DD835B2927BA77B5005D8098"
-               BuildableName = "ioreg2json"
+               BuildableName = "ioreg2plist"
                BlueprintName = "ioreg2plist"
                ReferencedContainer = "container:ioreg2plist.xcodeproj">
             </BuildableReference>
@@ -45,14 +45,14 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DD835B2927BA77B5005D8098"
-            BuildableName = "ioreg2json"
+            BuildableName = "ioreg2plist"
             BlueprintName = "ioreg2plist"
             ReferencedContainer = "container:ioreg2plist.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-d TMR AppleACPICPU AppleSMBIOS"
+            argument = "-d PNP0B00 AppleACPICPU AppleSMBIOS "
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -68,7 +68,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DD835B2927BA77B5005D8098"
-            BuildableName = "ioreg2json"
+            BuildableName = "ioreg2plist"
             BlueprintName = "ioreg2plist"
             ReferencedContainer = "container:ioreg2plist.xcodeproj">
          </BuildableReference>

@@ -11,11 +11,11 @@
         }
       },
       {
-        "package": "TINUIOKit",
+        "package": "TINUIORegistry",
         "repositoryURL": "https://github.com/ITzTravelInTime/TINUIORegistry",
         "state": {
           "branch": "main",
-          "revision": "a6e39f679153463cd970d3deaf31ea728ba38be8",
+          "revision": "d851b7ce8d175b88a4803c3ef36b890305e45c2b",
           "version": null
         }
       },
