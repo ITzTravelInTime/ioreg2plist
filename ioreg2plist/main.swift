@@ -29,7 +29,7 @@ extension Array: GenericEncodable where Element == ReturnType{
 
 let toolVersion = "1.0.0"
 let toolName = "ioreg2plist"
-let toolAuthor = "ITzTravelInTime (Pietro Caruso)"
+let toolAuthor = "ITzTravelInTime (Pietro Caruso) with the help of dreamwhite"
 let toolCopyright = "Copyright (c) 2022 Pietro Caruso (ITzTravelInTime)"
 
 let args = CommandLine.arguments

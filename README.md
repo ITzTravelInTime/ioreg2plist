@@ -11,6 +11,7 @@ This app has been mostly made for Developers and people who need to quickly get 
 # Credits
 
  - ITzTravelInTime (Pietro Caruso) - Project creator and main developer
+ - dreamwhite - For the idea and the help.
 
 # Contacts
 
