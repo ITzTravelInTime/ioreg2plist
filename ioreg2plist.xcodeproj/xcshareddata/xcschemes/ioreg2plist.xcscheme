@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-d PNP0B00 AppleACPICPU AppleSMBIOS "
+            argument = "-d PNP0B00 AppleACPICPU AppleSMBIOS"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

@@ -209,7 +209,7 @@ func main() -> Int32{
 
 func printHelp(){
     print("Usage: ioreg2plist [-f [file name]] [-d [device names]]")
-    print("Example usage: ioreg2plist -d RTC TMR PNP0B00")
+    print("Example usage: ioreg2plist -d PNP0B00")
     print("Do ioreg2plist -h to print this messange")
 }
 
