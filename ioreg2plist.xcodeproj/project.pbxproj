@@ -10,6 +10,7 @@
 		DD835B2E27BA77B5005D8098 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD835B2D27BA77B5005D8098 /* main.swift */; };
 		DD835B3627BA7820005D8098 /* TINUIORegistry in Frameworks */ = {isa = PBXBuildFile; productRef = DD835B3527BA7820005D8098 /* TINUIORegistry */; };
 		DD835B3927BA789F005D8098 /* TINUSerialization in Frameworks */ = {isa = PBXBuildFile; productRef = DD835B3827BA789F005D8098 /* TINUSerialization */; };
+		DD914B6A27BC011E00BA0474 /* ExtensionsAndTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD914B6927BC011E00BA0474 /* ExtensionsAndTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,7 @@
 		DD835B2D27BA77B5005D8098 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		DD835B3A27BB097D005D8098 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		DD835B3B27BB097D005D8098 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DD914B6927BC011E00BA0474 /* ExtensionsAndTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsAndTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				DD835B2D27BA77B5005D8098 /* main.swift */,
+				DD914B6927BC011E00BA0474 /* ExtensionsAndTypes.swift */,
 			);
 			path = ioreg2plist;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD835B2E27BA77B5005D8098 /* main.swift in Sources */,
+				DD914B6A27BC011E00BA0474 /* ExtensionsAndTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

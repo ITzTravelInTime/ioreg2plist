@@ -7,25 +7,6 @@
 
 import Foundation
 import TINUIORegistry
-import TINUSerialization
-
-typealias ReturnType = [String: Any]
-
-extension Dictionary: FastEncodable where Key == String, Value == ReturnType {
-    
-}
-
-extension Dictionary: GenericEncodable where Key == String, Value == ReturnType{
-    
-}
-
-extension Array: FastEncodable where Element == ReturnType {
-    
-}
-
-extension Array: GenericEncodable where Element == ReturnType{
-    
-}
 
 let toolVersion = "1.0.0"
 let toolName = "ioreg2plist"
@@ -40,6 +21,7 @@ func main() -> Int32{
     var endlessArgs: [String: Bool]? = nil
     var jumpArg: Bool = false
     var file: URL? = nil
+    var matchType: MatchType = .all
     
     if acount <= 1{
         printHelp()
@@ -61,7 +43,6 @@ func main() -> Int32{
             continue
         }
         
-        
         if acount == 2{
             switch arg{
             case "-i", "-info", "--info":
@@ -82,10 +63,32 @@ func main() -> Int32{
         }
         
         switch arg{
-        case "-d", "-device":
+        case "-n", "-nameonly", "--nameonly":
+            if matchType != .all{
+                print("Match type already specified. If you want to get metches for both the name property and the entry name, delete all type specification args. Otherwise just remove the duplicate specification argument.")
+                return 1
+            }
+            
+            matchType = .nodeNameOnly
+            continue
+        case "-p", "-namepropertyonly", "--namepropertyonly":
+            if matchType != .all{
+                print("Match type already specified. If you want to get metches for both the name property and the entry name, delete all type specification args. Otherwise just remove the duplicate specification argument.")
+                return 1
+            }
+            
+            matchType = .namePropertyOnly
+            continue
+        case "-d", "-device", "-devices", "-entries", "-entry", "--device", "--devices", "--entries", "--entry":
             endlessArgs = [:]
             continue
-        case "-f":
+        case "-f", "-file", "-path":
+            
+            if file != nil{
+                print("File path specified more than one time!!")
+                return 1
+            }
+            
             jumpArg.toggle()
             
             if narg == nil || (narg?.isEmpty ?? true){
@@ -125,8 +128,47 @@ func main() -> Int32{
         
     }
     
-    if endlessArgs == nil || endlessArgs?.isEmpty ?? true{
+    if endlessArgs == nil{
         print("No ioregistry objects specified")
+        return 1
+    }
+    
+    guard let result = iokitScan(forProperties: endlessArgs!, matchType: matchType) else{
+        return 1
+    }
+    
+    guard let plist = result.plist() else{
+        print("Impossible to get a plist conversion of the obtained data")
+        return 1
+    }
+    
+    print(plist)
+    
+    if let f = file{
+        do{
+            try plist.write(toFile: f.path, atomically: true, encoding: .utf8)
+        }catch let err{
+            print("Error writing data to file: \(err.localizedDescription)")
+            return 1
+        }
+    }
+    
+    return 0
+}
+
+func printHelp(){
+    print("Usage: ioreg2plist [-f [file name]] [-d [device names]]")
+    print("Example usage: ioreg2plist -d PNP0B00")
+    print("Do ioreg2plist -h to print this messange")
+}
+
+func iokitScan(forProperties oproperties: [String: Bool], matchType: MatchType) -> [ReturnType]?{
+    
+    var properties = oproperties
+    
+    if properties.isEmpty{
+        print("No properties specified!")
+        return nil
     }
     
     let iterator = IORecursiveIterator()
@@ -141,14 +183,14 @@ func main() -> Int32{
             continue
         }
         
-        if endlessArgs![name] != nil{
-            endlessArgs![name] = true
-        }else if let dname = entry.getNameProperty(){
-            if endlessArgs![dname] == nil{
+        if properties[name] != nil && matchType.checkEntryName{
+           properties[name] = true
+        }else if let dname = entry.getNameProperty(), matchType.checkNameProperty{
+            if properties[dname] == nil{
                 continue
             }
             
-            endlessArgs![dname] = true
+            properties[dname] = true
         }else{
             continue
         }
@@ -174,43 +216,21 @@ func main() -> Int32{
     
     var notFound: [String] = []
     
-    for i in endlessArgs ?? [:]{
+    for i in properties{
         if !i.value{
             notFound.append(i.key)
         }
     }
     
-    if !notFound.isEmpty && notFound.count != (endlessArgs ?? [:]).count{
+    if !notFound.isEmpty && notFound.count != properties.count{
         print("No matches found for the following entries: \(notFound)")
-        return 1
+        return nil
     }else if res.isEmpty{
         print("No matches found for all the specified entries")
-        return 1
+        return nil
     }
     
-    guard let plist = res.plist() else{
-        print("Impossible to get a plist conversion of the obtained data")
-        return 1
-    }
-    
-    print(plist)
-    
-    if let f = file{
-        do{
-            try plist.write(toFile: f.path, atomically: true, encoding: .utf8)
-        }catch let err{
-            print("Error writing data to file: \(err.localizedDescription)")
-            return 1
-        }
-    }
-    
-    return 0
-}
-
-func printHelp(){
-    print("Usage: ioreg2plist [-f [file name]] [-d [device names]]")
-    print("Example usage: ioreg2plist -d PNP0B00")
-    print("Do ioreg2plist -h to print this messange")
+    return res
 }
 
 exit(main())
