@@ -13,15 +13,17 @@ let toolName = "ioreg2plist"
 let toolAuthor = "ITzTravelInTime (Pietro Caruso) with the help of dreamwhite"
 let toolCopyright = "Copyright (c) 2022 Pietro Caruso (ITzTravelInTime)"
 
-let args = CommandLine.arguments
-let acount = CommandLine.arguments.count
-let path = FileManager.default.currentDirectoryPath
-
 func main() -> Int32{
+    
+    let args = CommandLine.arguments
+    let acount = CommandLine.arguments.count
+    let path = FileManager.default.currentDirectoryPath
+    
     var endlessArgs: [String: Bool]? = nil
     var jumpArg: Bool = false
     var file: URL? = nil
     var matchType: MatchType = .all
+    var produceNotFoundRecord: Bool? = nil
     
     if acount <= 1{
         printHelp()
@@ -65,7 +67,7 @@ func main() -> Int32{
         switch arg{
         case "-n", "-nameonly", "--nameonly":
             if matchType != .all{
-                print("Match type already specified. If you want to get metches for both the name property and the entry name, delete all type specification args. Otherwise just remove the duplicate specification argument.")
+                print("Match type specified multiple times. If you want to get metches for both the name property and the entry name, delete all type specification args. Otherwise just remove the extra specification argument.")
                 return 1
             }
             
@@ -73,13 +75,21 @@ func main() -> Int32{
             continue
         case "-p", "-namepropertyonly", "--namepropertyonly":
             if matchType != .all{
-                print("Match type already specified. If you want to get metches for both the name property and the entry name, delete all type specification args. Otherwise just remove the duplicate specification argument.")
+                print("Match type specified multiple times. If you want to get metches for both the name property and the entry name, delete all type specification args. Otherwise just remove the extra specification argument.")
                 return 1
             }
             
             matchType = .namePropertyOnly
             continue
-        case "-d", "-device", "-devices", "-entries", "-entry", "--device", "--devices", "--entries", "--entry":
+        case "-r", "-list-not-found-entries-in-output":
+            if produceNotFoundRecord != nil{
+                print("duplicate arg \"\(arg)\"")
+                return 1
+            }
+            
+            produceNotFoundRecord = true
+            continue
+        case "-d", "-device", "-devices", "-entries", "-entry", "--device", "--devices", "--entries", "--entry", "-e":
             endlessArgs = [:]
             continue
         case "-f", "-file", "-path":
@@ -122,7 +132,7 @@ func main() -> Int32{
             
             continue
         default:
-            print("Invalid arg: \(arg)!!")
+            print("Invalid/unknown arg: \(arg)!!")
             return 1
         }
         
@@ -133,7 +143,7 @@ func main() -> Int32{
         return 1
     }
     
-    guard let result = iokitScan(forProperties: endlessArgs!, matchType: matchType) else{
+    guard let result = iokitScan(forProperties: endlessArgs!, matchType: matchType, recordNotFound: produceNotFoundRecord ?? false) else{
         return 1
     }
     
@@ -157,12 +167,12 @@ func main() -> Int32{
 }
 
 func printHelp(){
-    print("Usage: ioreg2plist [-f [file name]] [-d [device names]]")
+    print("Usage: ioreg2plist [-n/-p] [-r] [-f [file name]] [-d/-e [device names]]")
     print("Example usage: ioreg2plist -d PNP0B00")
     print("Do ioreg2plist -h to print this messange")
 }
 
-func iokitScan(forProperties oproperties: [String: Bool], matchType: MatchType) -> [ReturnType]?{
+func iokitScan(forProperties oproperties: [String: Bool], matchType: MatchType, recordNotFound: Bool) -> [ReturnType]?{
     
     var properties = oproperties
     
@@ -189,7 +199,6 @@ func iokitScan(forProperties oproperties: [String: Bool], matchType: MatchType) 
             if properties[dname] == nil{
                 continue
             }
-            
             properties[dname] = true
         }else{
             continue
@@ -222,7 +231,11 @@ func iokitScan(forProperties oproperties: [String: Bool], matchType: MatchType) 
         }
     }
     
-    if !notFound.isEmpty && notFound.count != properties.count{
+    if recordNotFound{
+        res.append(["notFoundEntries": notFound])
+    }
+    
+    if !notFound.isEmpty && notFound.count != properties.count && !recordNotFound{
         print("No matches found for the following entries: \(notFound)")
         return nil
     }else if res.isEmpty{
