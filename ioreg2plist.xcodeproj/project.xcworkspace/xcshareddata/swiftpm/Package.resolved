@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/ITzTravelInTime/TINUIORegistry",
         "state": {
           "branch": null,
-          "revision": "59055fda3379bb43e3a71c5aad3211e03e866df5",
-          "version": "0.0.1"
+          "revision": "fb0200474b3e8b962cef6a0438420a32e62df944",
+          "version": "0.0.2"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/ITzTravelInTime/TINURecovery",
         "state": {
           "branch": null,
-          "revision": "9a0877a74bdd3f3dd2414a0e709c2b4ed439cd0f",
-          "version": "4.1.0"
+          "revision": "049e06e6cd257fab5448f830feeef1574d2a7790",
+          "version": "4.1.1"
         }
       },
       {
