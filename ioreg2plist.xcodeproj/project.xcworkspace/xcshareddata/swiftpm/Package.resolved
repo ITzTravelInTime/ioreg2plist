@@ -11,12 +11,12 @@
         }
       },
       {
-        "package": "TINUIORegistry",
+        "package": "TINUIOKit",
         "repositoryURL": "https://github.com/ITzTravelInTime/TINUIORegistry",
         "state": {
-          "branch": "main",
-          "revision": "d851b7ce8d175b88a4803c3ef36b890305e45c2b",
-          "version": null
+          "branch": null,
+          "revision": "59055fda3379bb43e3a71c5aad3211e03e866df5",
+          "version": "0.0.1"
         }
       },
       {
@@ -24,17 +24,17 @@
         "repositoryURL": "https://github.com/ITzTravelInTime/TINURecovery",
         "state": {
           "branch": null,
-          "revision": "174fd77843d7158ca8e8e4b4835b7552df0170db",
-          "version": "4.0.1"
+          "revision": "9a0877a74bdd3f3dd2414a0e709c2b4ed439cd0f",
+          "version": "4.1.0"
         }
       },
       {
         "package": "TINUSerialization",
         "repositoryURL": "https://github.com/ITzTravelInTime/TINUSerialization",
         "state": {
-          "branch": "main",
-          "revision": "51c014cef76abb3439480d65fcb8f9a8b05044e9",
-          "version": null
+          "branch": null,
+          "revision": "9bf196b2b56ee63ae9dffa072798346813a17235",
+          "version": "0.0.1"
         }
       }
     ]
