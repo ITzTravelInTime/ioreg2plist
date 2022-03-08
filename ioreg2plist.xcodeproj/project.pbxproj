@@ -311,7 +311,7 @@
 			repositoryURL = "https://github.com/ITzTravelInTime/TINUIORegistry";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.1;
+				minimumVersion = 0.0.3;
 			};
 		};
 		DD835B3727BA789F005D8098 /* XCRemoteSwiftPackageReference "TINUSerialization" */ = {
@@ -319,7 +319,7 @@
 			repositoryURL = "https://github.com/ITzTravelInTime/TINUSerialization";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.1;
+				minimumVersion = 0.0.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
